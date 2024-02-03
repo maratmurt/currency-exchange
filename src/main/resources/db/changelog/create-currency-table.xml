@@ -13,6 +13,7 @@
             <column name="nominal" type="bigint"/>
             <column name="value" type="numeric(19,5)"/>
             <column name="iso_num_code" type="bigint"/>
+            <column name="iso_char_code" type="varchar(255)"/>
         </createTable>
     </changeSet>
 
