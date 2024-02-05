@@ -19,7 +19,7 @@ public class DoubleAdapter extends XmlAdapter<String, Double> {
     }
 
     @Override
-    public String marshal(Double value) throws Exception {
+    public String marshal(Double value) {
         return format.format(value);
     }
 }

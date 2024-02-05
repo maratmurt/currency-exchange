@@ -1,78 +1,39 @@
 package ru.skillbox.currency.exchange.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.skillbox.currency.exchange.util.DoubleAdapter;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Valute")
 public class CurrencyDto {
     private Long id;
 
+    @XmlElement(name = "Name")
     private String name;
 
-    private Long nominal;
-
-    private Double value;
-
-    private Long isoNumCode;
-
-    private String isoCharCode;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @XmlElement(name = "Name")
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getNominal() {
-        return nominal;
-    }
-
     @XmlElement(name = "Nominal")
-    public void setNominal(Long nominal) {
-        this.nominal = nominal;
-    }
-
-    public Double getValue() {
-        return value;
-    }
+    private Long nominal;
 
     @XmlElement(name = "Value")
     @XmlJavaTypeAdapter(DoubleAdapter.class)
-    public void setValue(Double value) {
-        this.value = value;
-    }
-
-    public Long getIsoNumCode() {
-        return isoNumCode;
-    }
+    private Double value;
 
     @XmlElement(name = "NumCode")
-    public void setIsoNumCode(Long isoNumCode) {
-        this.isoNumCode = isoNumCode;
-    }
-
-    public String getIsoCharCode() {
-        return isoCharCode;
-    }
+    private Long isoNumCode;
 
     @XmlElement(name = "CharCode")
-    public void setIsoCharCode(String isoCharCode) {
-        this.isoCharCode = isoCharCode;
-    }
+    private String isoCharCode;
 }

@@ -19,8 +19,8 @@ public class RepositoryUpdater {
 
     public void update() {
         repository.deleteAll();
-        AllCurrenciesDto dtoList = xmlParser.parseCurrencies();
-        List<Currency> entities = dtoList
+        AllCurrenciesDto allCurrenciesDto = xmlParser.parseCurrencies();
+        List<Currency> entities = allCurrenciesDto
                 .getCurrencies()
                 .stream()
                 .map(mapper::convertToEntity)

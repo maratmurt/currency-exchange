@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.skillbox.currency.exchange.dto.AllCurrenciesDto;
@@ -26,8 +25,9 @@ public class XmlParser {
         String xml = fetchXml();
         AllCurrenciesDto dto;
         try {
-            JAXBContext context = JAXBContext.newInstance(AllCurrenciesDto.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Unmarshaller unmarshaller = JAXBContext
+                    .newInstance(AllCurrenciesDto.class)
+                    .createUnmarshaller();
             dto = (AllCurrenciesDto) unmarshaller.unmarshal(new StringReader(xml));
         } catch (JAXBException e) {
             throw new RuntimeException(e);
@@ -37,8 +37,7 @@ public class XmlParser {
 
     private String fetchXml() {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        String xml = response.getBody();
+        String xml = restTemplate.getForEntity(url, String.class).getBody();
         if (xml == null) {
             throw new RuntimeException("Актуальные данные не доступны!");
         }

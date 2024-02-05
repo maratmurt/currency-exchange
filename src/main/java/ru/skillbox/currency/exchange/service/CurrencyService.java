@@ -5,13 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.skillbox.currency.exchange.dto.AllCurrenciesDto;
 import ru.skillbox.currency.exchange.dto.CurrencyDto;
-import ru.skillbox.currency.exchange.dto.ReducedCurrencyDto;
 import ru.skillbox.currency.exchange.entity.Currency;
 import ru.skillbox.currency.exchange.mapper.CurrencyMapper;
 import ru.skillbox.currency.exchange.repository.CurrencyRepository;
 import ru.skillbox.currency.exchange.util.RepositoryUpdater;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
