@@ -1,16 +1,24 @@
 package ru.skillbox.currency.exchange.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlRootElement(name = "ValCurs")
 public class AllCurrenciesDto {
-    private List<ReducedCurrencyDto> currencies;
+    private List<CurrencyDto> currencies;
+
+    public List<CurrencyDto> getCurrencies() {
+        return currencies;
+    }
+
+    @XmlElement(name = "Valute")
+    public void setCurrencies(List<CurrencyDto> currencies) {
+        this.currencies = currencies;
+    }
 }

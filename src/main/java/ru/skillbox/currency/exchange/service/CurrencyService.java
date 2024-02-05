@@ -9,6 +9,7 @@ import ru.skillbox.currency.exchange.dto.ReducedCurrencyDto;
 import ru.skillbox.currency.exchange.entity.Currency;
 import ru.skillbox.currency.exchange.mapper.CurrencyMapper;
 import ru.skillbox.currency.exchange.repository.CurrencyRepository;
+import ru.skillbox.currency.exchange.util.RepositoryUpdater;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class CurrencyService {
     private final CurrencyMapper mapper;
     private final CurrencyRepository repository;
+    private final RepositoryUpdater updater;
 
     public CurrencyDto getById(Long id) {
         log.info("CurrencyService method getById executed");
@@ -41,12 +43,13 @@ public class CurrencyService {
     public AllCurrenciesDto getAll() {
         log.info("CurrencyService method getAll executed");
         AllCurrenciesDto allCurrencies = new AllCurrenciesDto();
-        List<ReducedCurrencyDto> reducedCurrencyList = repository
+        updater.update();
+        List<CurrencyDto> currencyList = repository
                 .findAll()
                 .stream()
-                .map(mapper::convertToReducedDto)
+                .map(mapper::convertToDto)
                 .collect(Collectors.toList());
-        allCurrencies.setCurrencies(reducedCurrencyList);
+        allCurrencies.setCurrencies(currencyList);
         return allCurrencies;
     }
 }

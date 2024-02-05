@@ -21,3 +21,5 @@ spring:
         hbm2ddl:
           auto: none
 
+currency-data:
+  url: https://cbr.ru/scripts/XML_daily.asp
