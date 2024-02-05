@@ -3,7 +3,7 @@ package ru.skillbox.currency.exchange.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.skillbox.currency.exchange.dto.AllCurrenciesDto;
+import ru.skillbox.currency.exchange.dto.AllReducedCurrenciesDto;
 import ru.skillbox.currency.exchange.dto.CurrencyDto;
 import ru.skillbox.currency.exchange.service.CurrencyService;
 
@@ -29,7 +29,7 @@ public class CurrencyController {
     }
 
     @GetMapping(value = "/")
-    ResponseEntity<AllCurrenciesDto> getAll() {
+    ResponseEntity<AllReducedCurrenciesDto> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 }
